@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>jQuery Form Validation</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fluid"
+     style="-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;">
+    <div class="container-fluid">
+        <div class="navbar-header navbar-center" style="margin: auto;">
+            <a class="navbar-brand" href="#">BootstrapValidation</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/timof1308/bootstrapValidation" target="_blank">Github</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>jQuery Form Validation</h2>
+    <form action="" id="form">
+        <div class="form-group">
+            <label class="control-label" for="text1">Required</label>
+            <input type="text" id="text1" class="form-control" name="text1">
+            <div class="help-block">Initial Help Block</div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text2">E-Mail</label>
+            <input type="text" id="text2" class="form-control" name="text2">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text3">Min Length</label>
+            <input type="text" id="text3" class="form-control" name="text3">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text4">Max Length</label>
+            <input type="text" id="text4" class="form-control" name="text4">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text5">Regular Expression Validation</label>
+            <input type="text" id="text5" class="form-control" name="text5" placeholder="regex for: test5">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text6">Disabled Field</label>
+            <input type="text" id="text6" class="form-control" name="text6" disabled
+                   placeholder="Validation will not be triggered">
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label for="text7">
+                    <input type="checkbox" name="text7" id="text7" value="">
+                    Checkbox 1
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="text75">
+                    <input type="checkbox" name="text7" id="text75" value="">
+                    Checkbox 2
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="radio">
+                <label for="text8">
+                    <input type="radio" name="text8" id="text8" value="">
+                    Radio 1
+                </label>
+            </div>
+            <div class="radio">
+                <label for="text85">
+                    <input type="radio" name="text8" id="text85" value="">
+                    Radio 2
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text9">Select Field</label>
+            <select id="text9" class="form-control" name="text9">
+                <option value="">Please Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="text10">Date Format</label>
+            <input type="text" id="text10" class="form-control" name="text10"
+                   placeholder="YYYY-MM-DD | MM.DD.YYYY | MM DD YYYY">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit Form</button>
+        </div>
+        <div class="form-group">
+            <button type="reset" id="reset" class="btn btn-default">Reset Fields</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="validator.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        new Validation('#form', {
+            fields: [
+                {
+                    name: 'text1',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Please type in any value'
+                    }
+                }, {
+                    name: 'text2',
+                    rule: {
+                        type: 'email',
+                        prompt: 'Please enter a valid email address'
+                    }
+                }, {
+                    name: 'text3',
+                    rule: {
+                        type: 'minLength:5',
+                        prompt: 'Enter at least 5 characters'
+                    }
+                }, {
+                    name: 'text4',
+                    rule: {
+                        type: 'maxLength:5',
+                        prompt: 'You cannot enter more than 5 characters'
+                    }
+                }, {
+                    name: 'text5',
+                    rule: {
+                        type: 'regex:^test5$',
+                        prompt: 'This field does not match the regular expression'
+                    }
+                }, {
+                    name: 'text6',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Field6 is disabled'
+                    }
+                }, {
+                    name: 'text7',
+                    rule: {
+                        type: 'checked',
+                        prompt: 'Any checkbox needs to be checked'
+                    }
+                }, {
+                    name: 'text8',
+                    rule: {
+                        type: 'checked',
+                        prompt: 'One radio needs to be checked'
+                    }
+                }, {
+                    name: 'text9',
+                    rule: {
+                        type: 'required',
+                        prompt: 'Select one field'
+                    }
+                }, {
+                    name: 'text10',
+                    rule: {
+                        type: 'date',
+                        prompt: 'Please enter a valid date format'
+                    }
+                }
+            ],
+            submitOnValid: false,
+            showErrorMessage: true,
+            errorMessageText: "Set Your Custom Error Message",
+            errorGroupClass: "has-error has-feedback",
+            successGroupClass: "has-success has-feedback"
+        });
+
+        $('#form')
+            .on('is-valid', function (e) {
+                console.log('valid');
+            })
+            .on('is-invalid', function (e) {
+                console.log('invalid');
+            });
+
+    });
+</script>
+
+</body>
+</html>
